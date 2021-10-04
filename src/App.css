@@ -1,38 +1,277 @@
+/*boiler plate project set-up*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
 .App {
-  text-align: center;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App,
+.Page {
+  justify-content: flex-start !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.Page,
+.Page__section,
+.Page__section-large,
+.Page__section-small {
+  width: 100%;
+}
+
+/*parent must be display flex for child to flex grow; e.g. '.App'*/
+.Page {
+  flex: 2;
+  background-size: cover;
+  background-color: #000;
+}
+
+.Page__section,
+.Page__section-large,
+.Page__section-small,
+.Page__item {
+  background-size: cover;
+}
+
+.Page__section {
+  min-height: 500px;
+}
+
+.Page__section-large {
+  min-height: 650px;
+}
+
+.Page__section-small {
+  min-height: 200px;
+}
+
+.Page__list {
+  flex-wrap: wrap;
+  justify-content: center !important;
+  padding-top: 60px;
+}
+
+.Page__item {
+  height: 400px;
+  width: 400px;
+  border: 10px solid rgba(255,255,255,0.1);
+  margin: 0px 30px;
+  margin-bottom: 50px;
+  transition: 0.3s;
+}
+
+.Page__item:hover {
+  box-shadow: 0px 0px 15px white;
+}
+
+.Page__item--favourites,
+.Page__details {
+  position: relative;
+}
+
+.Page__item--favourites:hover .Page__item--favourites-modal {
+  opacity: 100%;
+  pointer-events: unset;
+}
+
+.Page__item--favourites-modal {
+  opacity: 0%;
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.95);
+  position: absolute;
+  padding: 0px 45px;
+}
+
+.Page__details-score {
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 10px 15px;
+}
+
+h1,h2,h3,h4,h5,
+div,p,span,ul,li,
+a,button,input,select,
+.link,.navlink {
+  font-family: 'Heebo';
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+
+:root {
+  --lightBlue: rgb(37,174,244);
+  --darkBlue: rgb(9, 129, 233);
+  --grey: rgb(245,247,250);
+  --darkerGrey: rgb(172, 172, 173);
+  --darkGrey: rgb(99,99,102);
+  --red: rgb(255,0,0);
+  --green: rgb(0,255,0);
+}
+
+.row,
+.col,
+.center {
+  display: flex;
+  align-items: center;
+}
+
+.row,
+.col {
+  justify-content: space-evenly;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.center {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+button, input, select, a, .link, .navlink {
+  padding: 5px 15px;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: black;
+  background-color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:hover, .navlink:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+button:active, a:active, .navlink:active, .Page__item:active {
+  transform: scale(0.95);
+}
+
+input {
+  padding: 10px 50px;
+  font-size: 18px;
+  width: 30%;
+}
+
+a {
+  text-transform: unset;
+}
+
+h2 {
+  width: 60%;
+  text-transform: none;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.red {
+  color: var(--red);
+}
+
+.blue {
+  color: var(--lightBlue);
+}
+
+.green {  
+  color: var(--green);
+}
+
+.link-no-padd,
+.link-clear,
+.btn-clear {
+  padding: 0px;
+}
+
+.link-no-padd:hover {
+  transform: none;
+}
+
+.link-clear,
+.btn-clear  {
+  background-color: transparent;
+}
+
+img {
+  object-fit: cover;
+}
+
+.spinner {
+  margin: auto;
+}
+
+.navbar {
+  position: sticky;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  background-color: #000;
+  justify-content: space-between;
+  padding: 0px 50px;
+  border-bottom: 2px solid white;
+  z-index: 100;
+}
+
+.banner {
+  width: 100%;
+  height: 450px;
+}
+
+.paginationbar {
+  width: 50%;
+}
+
+.paginationbar__btn {
+  background-color: transparent;
+  width: 100px;
+}
+
+.paginationbar__btn:hover {
+  transform: none;
+  filter: brightness(70%);
+}
+
+.paginationbar__btn:active {
+  filter: brightness(100%);
+}
+
+.navigation__btn {
+  position: absolute;
+}
+
+#previous,
+#next {
+  top: 50%;
+}
+
+#previous {
+  left: 5%;
+}
+
+#next {
+  right: 5%;
 }
